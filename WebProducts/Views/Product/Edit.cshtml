@@ -12,7 +12,9 @@
     <p>Are you sure you want to edit this Product?</p>
     @using (Html.BeginForm("Edit", "Product", FormMethod.Post))
     {
+
         @Html.HiddenFor(model => model.Id)
+
         <div>
             @Html.LabelFor(model => model.Category)
             @Html.EditorFor(model => model.Category)

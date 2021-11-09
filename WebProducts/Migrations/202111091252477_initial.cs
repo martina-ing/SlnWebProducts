@@ -12,9 +12,9 @@ namespace WebProducts.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Category = c.String(),
-                        ProductName = c.String(),
-                        Description = c.String(),
+                        Category = c.String(maxLength: 150),
+                        ProductName = c.String(maxLength: 150),
+                        Description = c.String(maxLength: 150),
                         AvailableDate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

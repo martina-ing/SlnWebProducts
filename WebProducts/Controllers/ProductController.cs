@@ -48,6 +48,9 @@ namespace WebProducts.Controllers
                 return View("Create", product);
             }
 
+
+
+
             public ActionResult Create(Product product)
             {
                 if (ModelState.IsValid)
@@ -59,14 +62,24 @@ namespace WebProducts.Controllers
                 return View("Create", product);
             }
 
+
+
+
             public ActionResult Detail(int id)
             {
                 Product product = context.Products.Find(id);
-                if (product == null)
-                    return HttpNotFound();
+                
+                if (product != null)
+                { 
+                    return View("Detail", product);
+                }
 
-                return View("Detail", product);
+                return HttpNotFound();
+
+                
             }
+
+
 
             public ActionResult Edit(int id)
             {
@@ -77,11 +90,13 @@ namespace WebProducts.Controllers
                 return View("Edit", product);
             }
 
-            [HttpPost]          
+            [HttpPost]
             public ActionResult Edit(Product product)
             {
-                if (ModelState.IsValid)
+                var prod = context.Products.Find(product.Id);
+                if (prod != null)
                 {
+                    context.Entry(prod).State = EntityState.Detached;
                     context.Entry(product).State = EntityState.Modified;
                     context.SaveChanges();
                     return RedirectToAction("Index");
@@ -89,17 +104,23 @@ namespace WebProducts.Controllers
                 return View("Edit", product);
             }
 
+
+
+
+            [HttpGet]
             public ActionResult Delete(int id)
             {
-                Product product = context.Products.Find(id);
-                if (product == null)
-                    return HttpNotFound();
+                    Product product = context.Products.Find(id);
+                    if (product == null)
+                        return HttpNotFound();
 
-                return View("Delete", product);
+                    return View("Delete", product);
             }
 
-            [HttpPost]
-            [ActionName("Delete")]
+
+
+
+            [HttpPost]        
             public ActionResult DeleteConfirmed(int id)
             {
                 Product product = context.Products.Find(id);

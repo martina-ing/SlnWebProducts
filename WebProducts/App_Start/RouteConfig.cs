@@ -23,9 +23,19 @@ namespace WebProducts
                     category = UrlParameter.Optional,
                     name = UrlParameter.Optional
 
-
                 }
 
+                );
+
+
+            routes.MapRoute(
+                name: "Delete",
+                url: "{controller}/{action}/{id}",
+                defaults: new
+                {
+                    controller = "Product",
+                    action = "Delete"
+                }
                 );
 
 

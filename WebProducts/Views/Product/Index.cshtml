@@ -29,8 +29,7 @@
                 <td>@Html.ActionLink(item.Category, "Index", new { category = item.Category })</td>
                 <td>@Html.ActionLink(item.ProductName, "Index", new { productName = item.ProductName })</td>
 
-                @*<td>@Html.DisplayFor(modelItem => item.Category)</td>
-                <td>@Html.DisplayFor(modelItem => item.ProductName)</td>*@
+            
                 <td>@Html.DisplayFor(modelItem => item.Description)</td>
                 <td>@Html.DisplayFor(modelItem => item.AvailableDate)</td>
                 <td>
